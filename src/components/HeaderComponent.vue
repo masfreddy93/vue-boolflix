@@ -22,28 +22,51 @@ export default {
   data() {
     return {
       movieSearched: '',
+      apiKey: 'e99307154c6dfb0b4750f6603256716d',
+      // query: 'ritorno',
+      baseUri: 'https://api.themoviedb.org/3'
     }
   },
+
 
   methods: {
+    axiosCall() {
+      axios
+        // .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
+        .get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${this.movieSearched}&page=1`)
+        .then((res) => {
+          state.moviesFound = res.data.results
+          console.log(res.data.results)
+        })
+        .catch((err) => {
+          console.log('Error :', err)
+        });
+    },
+
     onClick() {
-      state.movieInput = this.movieSearched;
-      this.movieSearched = '';
-      // console.log('click')
+      state.movieInput = this.movieSearched.toLocaleLowerCase();
+      this.axiosCall()
+      this.movieSearched = ''
       console.log(state.movieInput)
-    }
+    },
+
   },
 
-  created() {
-    axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
-      .then((res) => {
-        console.log(res.data.results[0].title)
-      })
-      .catch((err) => {
-        console.log('Error :', err)
-      });
 
+  created() {
+
+      // this.axiosCall()
+
+    // axios
+    //     .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ciao')
+    //     // .get('https://api.themoviedb.org/3/movie/550?api_key=dd71c5c521f5566af5ca8a722cf0a2e1')
+    //     .then((res) => {
+    //       state.moviesFound = res.data.results
+    //       console.log(res.data.results)
+    //     })
+    //     .catch((err) => {
+    //       console.log('Error :', err)
+    //     });
   }
 }
 </script>
@@ -57,14 +80,17 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
