@@ -2,8 +2,9 @@
   <header class="header">
     <h1>{{ msg }}</h1>
     <div class="search-bar">
-      <input type="text" placeholder="Search Movie">
+      <input type="text" placeholder="Search Movie" v-model="movieFounded">
       <button>Send</button>
+      {{  }}
     </div>
   </header>
 </template>
@@ -13,6 +14,12 @@ export default {
   name: 'HeaderComponent',
   props: {
     msg: String
+  },
+
+  data() {
+    return {
+      movieFounded: '',
+    }
   }
 }
 </script>
