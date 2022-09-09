@@ -2,14 +2,17 @@
   <header class="header">
     <h1>{{ msg }}</h1>
     <div class="search-bar">
-      <input type="text" placeholder="Search Movie" v-model="movieFounded">
-      <button>Send</button>
-      {{  }}
+      <input type="text" placeholder="Search Movie" v-model="movieSearched">
+      <button @click="onClick">Send</button>
+      {{ movieSearched }}
     </div>
   </header>
 </template>
 
 <script>
+
+import state from '../store.js'
+
 export default {
   name: 'HeaderComponent',
   props: {
@@ -18,11 +21,21 @@ export default {
 
   data() {
     return {
-      movieFounded: '',
+      movieSearched: '',
+    }
+  },
+
+  methods: {
+    onClick() {
+      state.movieInput = this.movieSearched;
+      console.log('click')
+      console.log(state.movieInput)
     }
   }
 }
 </script>
+
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
