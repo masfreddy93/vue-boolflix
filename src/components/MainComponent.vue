@@ -9,6 +9,7 @@
                 <h4>Original Title: {{movie.original_title}}</h4>
                 <h4>Language: {{movie.original_language}}</h4>
                 <h4>Vote: {{movie.vote_average}}</h4>
+                <br>
             </li>
         </ul>
     </main>
