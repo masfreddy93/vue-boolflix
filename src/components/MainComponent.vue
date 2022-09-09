@@ -1,9 +1,7 @@
 <template>
     <main>
-        <ul>
-            <li>1st movie</li>
-            <li>2nd movie</li>
-            <li> {{movieFounded}}</li>
+        <ul v-for="(movie,i) of moviesFounded" :key="i">
+            <li> {{ movie }} </li>
         </ul>
     </main>
 </template>
@@ -16,8 +14,8 @@
     export default {
 
         computed: {
-            movieFounded() {
-                return state.movieInput;
+            moviesFounded() {
+                return state.moviesFounded;
             }
         },
 
