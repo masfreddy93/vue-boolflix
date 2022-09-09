@@ -11,6 +11,7 @@
 <script>
 
 import state from '../store.js'
+import axios from 'axios'
 
 export default {
   name: 'HeaderComponent',
@@ -31,6 +32,18 @@ export default {
       // console.log('click')
       console.log(state.movieInput)
     }
+  },
+
+  created() {
+    axios
+      .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
+      .then((res) => {
+        console.log(res.data.results[0].title)
+      })
+      .catch((err) => {
+        console.log('Error :', err)
+      });
+
   }
 }
 </script>
