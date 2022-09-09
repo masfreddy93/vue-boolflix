@@ -3,8 +3,7 @@
     <h1>{{ msg }}</h1>
     <div class="search-bar">
       <input type="text" placeholder="Search Movie" v-model="movieSearched">
-      <button @click="onClick">Send</button>
-      {{ movieSearched }}
+      <button @click="onClick">Enter</button>
     </div>
   </header>
 </template>
