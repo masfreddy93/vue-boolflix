@@ -28,12 +28,15 @@ export default {
   methods: {
     onClick() {
       state.movieInput = this.movieSearched;
-      console.log('click')
+      this.movieSearched = '';
+      // console.log('click')
       console.log(state.movieInput)
     }
   }
 }
 </script>
+
+
 
 
 
