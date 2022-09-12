@@ -7,13 +7,9 @@
                 <img v-if="movie.poster_path === null" :src="movie.poster_default" alt="No poster" width="342px">
                 <h4>Title: {{movie.title}} </h4>
                 <h4>Original Title: {{movie.originalTitle}}</h4>
-
-                <!-- <h4 v-if="movie.flag.status == 404">Language: {{movie.lang}}</h4> -->
                 <h4> Language:
-                    <img :src="movie.flag" alt="flag of country's language" width="20">
+                    <img :src="movie.flag" width="20" @error="errorLoadImage">
                 </h4>
-                <!-- <img :src="movie.flag" alt="flag of country's language" width="20">  -->
-
                 <h4>Vote: 
                     <i v-for="(fullStarMovie) in movie.vote" :key="fullStarMovie" class="fa-solid fa-star"></i>
                     <i v-for="(emptyStarMovie) in (maxOfStars - movie.vote)" :key="emptyStarMovie" class="fa-regular fa-star"></i>
@@ -99,6 +95,12 @@ export default {
             })
         }
     },
+
+    methods: {
+        errorLoadImage() {
+            event.target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/1200px-Error.svg.png'
+        }
+    }
 
 }
 
