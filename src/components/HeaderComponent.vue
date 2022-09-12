@@ -30,13 +30,28 @@ export default {
 
 
   methods: {
-    axiosCall() {
+    axiosCallMovie() {
       axios
         // .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
         .get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${this.movieSearched}&page=1`)
         .then((res) => {
           state.moviesFound = res.data.results
-          console.log(res.data.results)
+          // console.log(res.data.results)
+          // console.log(res)
+        })
+        .catch((err) => {
+          console.log('Error :', err)
+        })
+    },
+
+    axiosCallSeries() {
+      axios
+        // .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
+        .get(`${this.baseUri}/search/tv?api_key=${this.apiKey}&query=${this.movieSearched}&page=1`)
+        .then((res) => {
+          state.seriesFound = res.data.results
+          // console.log(res.data.results)
+          // console.log(res)
         })
         .catch((err) => {
           console.log('Error :', err)
@@ -45,29 +60,14 @@ export default {
 
     onClick() {
       state.movieInput = this.movieSearched.toLocaleLowerCase();
-      this.axiosCall()
+      this.axiosCallMovie()
+      this.axiosCallSeries()
       this.movieSearched = ''
-      console.log(state.movieInput)
+      // console.log(state.movieInput)
     },
 
   },
 
-
-  created() {
-
-      // this.axiosCall()
-
-    // axios
-    //     .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ciao')
-    //     // .get('https://api.themoviedb.org/3/movie/550?api_key=dd71c5c521f5566af5ca8a722cf0a2e1')
-    //     .then((res) => {
-    //       state.moviesFound = res.data.results
-    //       console.log(res.data.results)
-    //     })
-    //     .catch((err) => {
-    //       console.log('Error :', err)
-    //     });
-  }
 }
 </script>
 
