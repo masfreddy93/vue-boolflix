@@ -3,6 +3,8 @@
         <h2>Movies</h2>
         <ul v-for="movie of moviesFound" :key="movie.id">
             <li>
+                <img v-if="movie.poster_path !== null" :src="movie.poster" alt="Poster Movie">
+                <img v-if="movie.poster_path === null" :src="movie.poster_default" alt="No poster" width="342px">
                 <h4>Title: {{movie.title}} </h4>
                 <h4>Original Title: {{movie.originalTitle}}</h4>
 
@@ -12,7 +14,6 @@
                 </h4>
                 <!-- <img :src="movie.flag" alt="flag of country's language" width="20">  -->
 
-
                 <h4>Vote (0/5): {{movie.vote}}</h4>
                 <br>
             </li>
@@ -20,6 +21,8 @@
         <h2>Series</h2>
         <ul v-for="serie of seriesFound" :key="serie.id">
             <li>
+                <img v-if="serie.poster_path !== null" :src="serie.poster" alt="Poster Tv Show">
+                <img v-if="serie.poster_path === null" :src="serie.poster_default" alt="No poster" width="342px">
                 <h4>Title: {{serie.title}} </h4>
                 <h4>Original Title: {{serie.originalTitle}}</h4>
 
@@ -28,7 +31,6 @@
                     <img :src="serie.flag" alt="flag of country's language" width="20">
                 </h4>
                 <!-- <img :src="movie.flag" alt="flag of country's language" width="20">  -->
-
 
                 <h4>Vote (0/5): {{serie.vote}}</h4>
                 <br>
@@ -46,7 +48,9 @@ export default {
 
     data() {
         return {
-            flagBaseUri: 'https://flagcdn.com'
+            flagBaseUri: 'https://flagcdn.com',
+            posterBaseUri: 'https://image.tmdb.org/t/p',
+            posterSize: 'w342'
         }
     },
 
@@ -61,7 +65,9 @@ export default {
                     lang: el.original_language,
                     flag: `${this.flagBaseUri}/${el.original_language}.svg`,
                     // flag: 'https://flagcdn.com/za.svg',
-                    poster: '',
+                    poster_path: el.poster_path,
+                    poster: `${this.posterBaseUri}/${this.posterSize}/${el.poster_path}`,
+                    poster_default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
                     vote: Math.round(el.vote_average / 2),
                 }
                 return newMovie;
@@ -75,7 +81,9 @@ export default {
                     originalTitle: el.original_name,
                     lang: el.original_language,
                     flag: `${this.flagBaseUri}/${el.original_language}.svg`,
-                    poster: '',
+                    poster: `${this.posterBaseUri}/${this.posterSize}/${el.poster_path}`,
+                    poster_path: el.poster_path,
+                    poster_default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
                     vote: Math.round(el.vote_average / 2),
                 }
                 return newSerie;
