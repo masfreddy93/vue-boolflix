@@ -2,7 +2,7 @@
   <header class="header">
     <h1>{{ msg }}</h1>
     <div class="search-bar">
-      <input type="text" placeholder="Search Movie" v-model="movieSearched">
+      <input type="text" placeholder="Search Movie" v-model="movieSearched" @keyup.enter="onClick">
       <button @click="onClick">Enter</button>
     </div>
   </header>
@@ -40,7 +40,7 @@ export default {
         })
         .catch((err) => {
           console.log('Error :', err)
-        });
+        })
     },
 
     onClick() {
