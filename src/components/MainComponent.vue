@@ -14,7 +14,10 @@
                 </h4>
                 <!-- <img :src="movie.flag" alt="flag of country's language" width="20">  -->
 
-                <h4>Vote (0/5): {{movie.vote}}</h4>
+                <h4>Vote: 
+                    <i v-for="(fullStarMovie) in movie.vote" :key="fullStarMovie" class="fa-solid fa-star"></i>
+                    <i v-for="(emptyStarMovie) in (maxOfStars - movie.vote)" :key="emptyStarMovie" class="fa-regular fa-star"></i>
+                </h4>
                 <br>
             </li>
         </ul>
@@ -32,7 +35,12 @@
                 </h4>
                 <!-- <img :src="movie.flag" alt="flag of country's language" width="20">  -->
 
-                <h4>Vote (0/5): {{serie.vote}}</h4>
+                <!-- <h4>Vote (0/5): {{serie.vote}}</h4> -->
+
+                <h4>Vote: 
+                    <i v-for="(fullStarSerie) in serie.vote" :key="fullStarSerie" class="fa-solid fa-star"></i>
+                    <i v-for="(emptyStarSerie) in (maxOfStars - serie.vote)" :key="emptyStarSerie" class="fa-regular fa-star"></i>
+                </h4>
                 <br>
             </li>
         </ul>
@@ -50,7 +58,8 @@ export default {
         return {
             flagBaseUri: 'https://flagcdn.com',
             posterBaseUri: 'https://image.tmdb.org/t/p',
-            posterSize: 'w342'
+            posterSize: 'w342',
+            maxOfStars: 5,
         }
     },
 
@@ -87,7 +96,7 @@ export default {
                     vote: Math.round(el.vote_average / 2),
                 }
                 return newSerie;
-            }) 
+            })
         }
     },
 

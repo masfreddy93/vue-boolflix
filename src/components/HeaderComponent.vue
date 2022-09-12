@@ -13,6 +13,7 @@
 import state from '../store.js'
 import axios from 'axios'
 
+
 export default {
   name: 'HeaderComponent',
   props: {
@@ -61,7 +62,7 @@ export default {
       this.movieSearched = ''
     },
   },
-  
+
 }
 </script>
 
