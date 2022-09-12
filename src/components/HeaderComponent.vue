@@ -23,7 +23,6 @@ export default {
     return {
       movieSearched: '',
       apiKey: 'e99307154c6dfb0b4750f6603256716d',
-      // query: 'ritorno',
       baseUri: 'https://api.themoviedb.org/3'
     }
   },
@@ -46,12 +45,9 @@ export default {
 
     axiosCallSeries() {
       axios
-        // .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
         .get(`${this.baseUri}/search/tv?api_key=${this.apiKey}&query=${this.movieSearched}&page=1`)
         .then((res) => {
           state.seriesFound = res.data.results
-          // console.log(res.data.results)
-          // console.log(res)
         })
         .catch((err) => {
           console.log('Error :', err)
@@ -63,11 +59,9 @@ export default {
       this.axiosCallMovie()
       this.axiosCallSeries()
       this.movieSearched = ''
-      // console.log(state.movieInput)
     },
-
   },
-
+  
 }
 </script>
 
