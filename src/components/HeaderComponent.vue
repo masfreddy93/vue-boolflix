@@ -1,9 +1,11 @@
 <template>
   <header class="header">
-    <h1>{{ msg }}</h1>
-    <div class="search-bar">
-      <input type="text" placeholder="Search Movie" v-model="movieSearched" @keyup.enter="onClick">
-      <button @click="onClick">Enter</button>
+    <div class="container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="Logo Netflix">
+      <div class="search-bar">
+        <input type="text" placeholder="Search Movie" v-model="movieSearched" @keyup.enter="onClick">
+        <button @click="onClick">Enter</button>
+    </div>
     </div>
   </header>
 </template>
@@ -71,21 +73,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  @import '../style/general.scss';
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  .container {
 
-a {
-  color: #42b983;
-}
+    @include my-flex;
+    flex-wrap: nowrap;
+
+    img {
+      max-height: 25px;
+    }
+
+    .search-bar {
+      margin-left: auto;
+    }
+  }
+
 </style>

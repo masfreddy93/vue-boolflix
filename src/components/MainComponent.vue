@@ -1,13 +1,16 @@
 <template>
     <main>
-        <h2>Movies</h2>
-        <ul>
-            <CardComponent v-for="movie of moviesFound" :key="movie.id" :el="movie" />
-        </ul>
-        <h2>TV Shows</h2>
-        <ul>
-            <CardComponent v-for="serie of seriesFound" :key="serie.id" :el="serie" />
-        </ul>
+        <div class="container">
+            <h2>Movies</h2>
+            <ul>
+                <CardComponent v-for="movie of moviesFound" :key="movie.id" :el="movie" />
+            </ul>
+
+            <h2>TV Shows</h2>
+            <ul>
+                <CardComponent v-for="serie of seriesFound" :key="serie.id" :el="serie" />
+            </ul>
+        </div>
     </main>
 </template>
 
@@ -37,8 +40,9 @@ export default {
                     // flag: 'https://flagcdn.com/za.svg',
                     poster_path: el.poster_path,
                     poster: `${this.posterBaseUri}/${this.posterSize}/${el.poster_path}`,
-                    poster_default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
+                    poster_default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png',
                     vote: Math.round(el.vote_average / 2),
+                    overview: el.overview,
                 };
                 return newMovie;
             });
@@ -53,8 +57,9 @@ export default {
                     flag: `${this.flagBaseUri}/${el.original_language}.svg`,
                     poster: `${this.posterBaseUri}/${this.posterSize}/${el.poster_path}`,
                     poster_path: el.poster_path,
-                    poster_default: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png",
+                    poster_default: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png",
                     vote: Math.round(el.vote_average / 2),
+                    overview: el.overview,
                 };
                 return newSerie;
             });
@@ -64,3 +69,33 @@ export default {
 }
 
 </script>
+
+<style lang="scss">
+
+    @import '../style/general.scss';
+
+    main {
+
+        color: white;
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            
+            @include my-flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 5rem;
+            overflow-y: hidden;
+
+            img {
+
+                // max-height: 300px;
+            }
+        }
+    }
+
+</style>
