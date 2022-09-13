@@ -28,6 +28,7 @@ export default {
             posterSize: "w342",
         };
     },
+
     computed: {
         moviesFound() {
             return state.moviesFound.map((el) => {
@@ -37,7 +38,6 @@ export default {
                     originalTitle: el.original_title,
                     lang: el.original_language,
                     flag: `${this.flagBaseUri}/${el.original_language}.svg`,
-                    // flag: 'https://flagcdn.com/za.svg',
                     poster_path: el.poster_path,
                     poster: `${this.posterBaseUri}/${this.posterSize}/${el.poster_path}`,
                     poster_default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png',
@@ -69,6 +69,7 @@ export default {
             return state.researchIsStarted;
         }
     },
+    
     components: { CardComponent }
 }
 

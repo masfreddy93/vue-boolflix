@@ -33,12 +33,9 @@ export default {
   methods: {
     axiosCallMovie() {
       axios
-        // .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno')
         .get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${this.movieSearched}&page=1`)
         .then((res) => {
           state.moviesFound = res.data.results
-          // console.log(res.data.results)
-          // console.log(res)
         })
         .catch((err) => {
           console.log('Error :', err)
@@ -64,15 +61,6 @@ export default {
       state.researchIsStarted = true
       console.log('ricerca: ', state.researchIsStarted)
     },
-
-    // toggleCategoryVisibility() {
-    //   let category = document.querySelector('category')
-    //   console.log('hei', category)
-    //   if(category.style.display === 'none')
-    //     category.style.display = 'block'
-    //   else 
-    //     category.style.display = 'none'
-    // }
   },
 
 }
@@ -80,9 +68,6 @@ export default {
 
 
 
-
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
   @import '../style/general.scss';
