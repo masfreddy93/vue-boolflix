@@ -28,7 +28,6 @@ export default {
     }
   },
 
-
   methods: {
     axiosCallMovie() {
       axios
