@@ -6,7 +6,7 @@
         </div>
         <div class="card-details">
             <p> <b>Title: </b> {{el.title}} </p>
-            <p :class="(isTheSame(el.title, el.originalTitle)) ? 'not-visible' : 'visible'"> <b>Original Title: </b> {{el.originalTitle}}</p>
+            <p :class="(isTheSame(el.title, el.originalTitle)) ? 'not-visible' : ''"> <b>Original Title: </b> {{el.originalTitle}}</p>
             <!-- <p> <b>Language:</b>
                 <img :src="el.flag" width="20" :alt="el.lang">
             </p> -->
@@ -14,7 +14,7 @@
                 <font-awesome-icon icon="fa-solid fa-star" v-for="n in el.vote" :key="n" />
                 <font-awesome-icon icon="fa-regular fa-star" v-for="n in (maxOfStars - el.vote)" :key="(n + el.vote)" />
             </p>
-            <p> <b>Overview: </b> {{ el.overview }}</p>
+            <p :class="(containText(el.overview)) ? 'not-visible' : ''" > <b>Overview: </b> {{ el.overview }}</p>
         </div>
     </li>
 </template>
@@ -40,6 +40,9 @@ export default {
                 return true
             else   
                 return false
+        },
+        containText(string) {
+            return string.length === 0;
         }
     },
 
