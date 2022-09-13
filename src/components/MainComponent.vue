@@ -1,12 +1,12 @@
 <template>
     <main>
         <div class="container">
-            <h2>Movies</h2>
+            <h2 :class="researchIsStarted ? 'categoryVisible' : 'categoryNotVisible'" >Movies</h2>
             <ul>
                 <CardComponent v-for="movie of moviesFound" :key="movie.id" :el="movie" />
             </ul>
 
-            <h2>TV Shows</h2>
+            <h2 :class="researchIsStarted ? 'categoryVisible' : 'categoryNotVisible'">TV Shows</h2>
             <ul>
                 <CardComponent v-for="serie of seriesFound" :key="serie.id" :el="serie" />
             </ul>
@@ -63,6 +63,10 @@ export default {
                 };
                 return newSerie;
             });
+        },
+        researchIsStarted() {
+            console.log(state.researchIsStarted)
+            return state.researchIsStarted;
         }
     },
     components: { CardComponent }
@@ -82,6 +86,14 @@ export default {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
+            
+        .categoryVisible {
+            display: block;
+        }
+
+        .categoryNotVisible {
+                display: none;
+            }
 
         ul {
             
@@ -90,10 +102,11 @@ export default {
             gap: 1rem;
             margin-bottom: 5rem;
             overflow-y: hidden;
+            overflow-x: auto;
 
             img {
 
-                // max-height: 300px;
+                height: 100%;
             }
         }
     }

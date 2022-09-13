@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" id="header">
     <div class="container">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="Logo Netflix">
       <div class="search-bar">
@@ -61,7 +61,18 @@ export default {
       this.axiosCallMovie()
       this.axiosCallSeries()
       this.movieSearched = ''
+      state.researchIsStarted = true
+      console.log('ricerca: ', state.researchIsStarted)
     },
+
+    // toggleCategoryVisibility() {
+    //   let category = document.querySelector('category')
+    //   console.log('hei', category)
+    //   if(category.style.display === 'none')
+    //     category.style.display = 'block'
+    //   else 
+    //     category.style.display = 'none'
+    // }
   },
 
 }

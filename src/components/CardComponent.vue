@@ -54,6 +54,11 @@ export default {
                 opacity: 0.2;
             }
 
+            img {
+                width: 342px;
+                height: 500px;
+            }
+
         }
 
         .card-details {
