@@ -102,13 +102,13 @@ export default {
             align-items: flex-start;
             gap: 1rem;
             margin-bottom: 5rem;
-            overflow-y: hidden;
+            
             overflow-x: auto;
 
-            img {
+            // img {
 
-                height: 100%;
-            }
+            //     height: 100%;
+            // }
         }
     }
 
